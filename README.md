@@ -66,12 +66,10 @@ Avaliação do modelo no conjunto de teste em comparação com modelos *baseline
 * **Ganho do KNN Otimizado:** Redução do **MAE em ~40%** e do **RMSE em ~26%** em comparação com a Regressão Linear do split, além de aumentar o $R^2$ de $0.807$ para **$0.895$**.
 * **Controle de Overfitting:** Resultados de treino ($\text{RMSE} = 4487.45$) e teste ($\text{RMSE} = 4401.07$) congruentes, garantindo excelente generalização.
 
-### 📍 Etapa 5: Análise de Erros e Resíduos (Onde o Modelo Erra)
-- **Análise dos Resíduos:** A média dos erros absolutos (MAE = 2496) é substancialmente menor que o RMSE (4401), indicando que a grande maioria das previsões é precisa, sendo o RMSE influenciado por *outliers* específicos.
-- **Grupo de Não Fumantes Atípicos:** Foi identificado um subgrupo de não fumantes com cobranças atípicas elevadas entre $20.000 e $32.000. Como o dataset não possui variáveis médicas detalhadas adicionais, o modelo subestima esses valores pontuais.
-- **Efeito de Média do KNN em Valores Extremos:** Em fumantes com custos superiores a $50.000, o modelo tende a subestimar levemente o valor por ser uma média ponderada dos 26 vizinhos mais próximos.
+### 📍 Etapa 5: Conclusão, Impacto do Modelo e Próximos Passos
 
-### 📈 Análise dos Ganhos Percentuais:
-Comparado à Regressão Linear padrão, o **KNN Otimizado** reduziu o erro absoluto médio (**MAE**) em aproximadamente **40%** e o erro quadrático médio (**RMSE**) em cerca de **24% a 26%**, elevando o coeficiente de determinação ($R^2$) para expressivos **0.895**. 
-
-* **Verificação de Overfitting:** Os resultados obtidos no conjunto de treino (RMSE de 4487.45 e $R^2$ de 0.8529) mantiveram-se extremamente alinhados com o conjunto de teste (RMSE de 4401.07 e $R^2$ de 0.8946), comprovando excelente capacidade de generalização do modelo.
+- **Síntese dos Resultados:** O objetivo principal do Checkpoint era superar as métricas de referência apresentadas em aula, meta alcançada com sucesso absoluto pelo **KNN Otimizado**, que obteve o melhor desempenho em todas as quatro métricas avaliadas, destacando-se pelo coeficiente de determinação $R^2$ de **0.895** (frente a 0.807 da Regressão Linear e 0.837 do KNN baseline).
+- **Análise de Resíduos e Limitações:**
+  - O MAE reduzido (2496) em contraste com o RMSE (4401) evidencia que a maioria das previsões é altamente assertiva, sendo o RMSE puxado por *outliers* pontuais.
+  - O modelo apresentou subestimações em dois nichos específicos: um grupo de não fumantes com custos atípicos elevados (não explicados pelas colunas do dataset) e fumantes com custos extremos acima de US$ 50.000 (comportamento inerente à média dos $k=26$ vizinhos).
+- **Considerações Finais:** A engenharia de atributos focada na interação entre tabagismo e obesidade, combinada com a busca automatizada de hiperparâmetros, provou ser o diferencial crítico para capturar a não-linearidade do problema de seguros.
